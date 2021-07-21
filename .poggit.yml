@@ -4,7 +4,7 @@ build-by-default: true
 branches:
 - master
 projects:
-  TitanCommandSpy:
+  GrantGUI:
     path: ""
     icon: "icon.gif"
 ...
