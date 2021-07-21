@@ -18,8 +18,6 @@ Command | Description | Permission
 - All ranks are added in a fake inventory; in order as shown in their config list.
 - Offline player selector support.
 
-![GrantGUI](https://drive.google.com/file/d/1_0hN-Xaq-KQcER0OB5CEIeR5-lO8TrcT/view?usp=sharing)
-
 # Contributors
 ***
 - [TitaniumLB](https://github.com/TitaniumLB6571)
