@@ -18,7 +18,6 @@ Command | Description | Permission
 - All ranks are added in a fake inventory; in order as shown in their config list.
 - Offline player selector support.
 
-# Contributors
+# Setup
 ***
-- [TitaniumLB](https://github.com/TitaniumLB6571)
-- [MasterPlayz](https://github.com/MASTERPLAYZ0000)
+Put the plugin into your plugins folder, make sure you add either [PurePerms](https://poggit.pmmp.io/p/PurePerms) or [RankSystem](https://poggit.pmmp.io/p/RankSystem) to your plugins folder as well as [InvMenu](https://poggit.pmmp.io/ci/Muqsit/InvMenu/InvMenu).
