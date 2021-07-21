@@ -1,0 +1,10 @@
+  
+--- # Poggit-CI Manifest. Open the CI at https://github.com/NorixDevelopment/GrantGUI
+build-by-default: true
+branches:
+- master
+projects:
+  TitanCommandSpy:
+    path: ""
+    icon: "icon.gif"
+...
