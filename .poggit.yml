@@ -4,7 +4,7 @@ branches:
 - main
 projects:
   GrantGUI:
-    path: ""
+    path: "GrantGUI/"
     icon: "icon.gif"
     libs:
       - src: libs/muqsit/InvMenu/InvMenu
