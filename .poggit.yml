@@ -7,7 +7,6 @@ projects:
     path: ""
     icon: "resources/GrantGUI.gif"
     libs:
-      - src: muqsit/invmenu/InvMenu
-          version: ^4.1.1
-          branch: master
+      - src: muqsit/InvMenu/InvMenu
+        version: ^4.1.1
 ...
