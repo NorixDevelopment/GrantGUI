@@ -38,7 +38,7 @@ class GrantGUI extends PluginBase
     use ManagerLoader;
 
     public const PREFIX = TextFormat::YELLOW . TextFormat::BOLD . "> " . TextFormat::RESET . TextFormat::GRAY;
-    public const ADS = ["(https://www.paypal.me/TitaniumLB/)", "(https://www.paypal.me/MasterPlayz/), (https://www.paypal.me/zPearlss/)"]; // TODO: NorixPaypal
+    public const ADS = ["(https://www.paypal.me/TitaniumLB/)", "(https://www.paypal.me/MasterPlayz0)"];
     public const ADS_MESSAGE = "If you like our projects, please feel free to donate to the contributors of this plugin for future development: ";
 
     /** @var CommandManager */
