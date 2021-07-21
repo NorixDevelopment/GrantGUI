@@ -22,14 +22,14 @@
  * @link https://bit.ly/NorixDiscord
 */
 
-namespace NorixDevelopment;
+namespace NorixDevelopment\GrantGUI;
 
 use _64FF00\PurePerms\PPGroup;
 use _64FF00\PurePerms\PurePerms;
 use IvanCraft623\RankSystem\rank\Rank;
 use IvanCraft623\RankSystem\session\SessionManager;
-use libs\muqsit\invmenu\InvMenu;
-use libs\muqsit\invmenu\transaction\DeterministicInvMenuTransaction;
+use muqsit\invmenu\InvMenu;
+use muqsit\invmenu\transaction\DeterministicInvMenuTransaction;
 use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\Server;

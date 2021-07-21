@@ -22,32 +22,56 @@
  * @link https://bit.ly/NorixDiscord
 */
 
-namespace NorixDevelopment\commands;
+namespace NorixDevelopment\GrantGUI\commands;
 
 
-use NorixDevelopment\commands\types\GrantCommand;
+use NorixDevelopment\GrantGUI\GrantGUI;
+use NorixDevelopment\GrantGUI\RankManager;
 use pocketmine\command\Command;
+use pocketmine\command\CommandSender;
+use pocketmine\Player;
 use pocketmine\Server;
 
-class CommandManager
+class GrantCommand extends Command
 {
 
     public function __construct()
     {
-        $this->registerCommand(new GrantCommand());
+        parent::__construct("grant");
+        $this->setPermission("grantgui.command.use");
+        $this->setDescription("Access GrantGUI");
     }
 
 
-    /**
-     * @param Command $command
-     */
-    public function registerCommand(Command $command): void
+    public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
-        $commandMap = Server::getInstance()->getCommandMap();
-        $existingCommand = $commandMap->getCommand($command->getName());
-        if ($existingCommand !== null) {
-            $commandMap->unregister($existingCommand);
+        if (!$sender instanceof Player) {
+            $sender->sendMessage("This command does not support console executions.");
+            return;
         }
-        $commandMap->register($command->getName(), $command);
+
+        if (!isset($args[0])) {
+            $sender->sendMessage(GrantGUI::PREFIX . "Usage: /grant <player>");
+            return;
+        }
+
+        $target = Server::getInstance()->getPlayer($args[0]);
+        if (!$target instanceof Player) {
+            return;
+        }
+
+        if (!$target->isOnline()) {
+            $target = Server::getInstance()->getOfflinePlayer($args[0]);
+            if ($target == null) {
+                $sender->sendMessage(GrantGUI::PREFIX . "This user does not exist.");
+                return;
+            }
+            RankManager::sendRanksMenu($sender, $target);
+            return;
+        } else {
+            RankManager::sendRanksMenu($sender, $target);
+            return;
+        }
     }
+
 }

@@ -22,54 +22,42 @@
  * @link https://bit.ly/NorixDiscord
 */
 
-namespace NorixDevelopment\commands\types;
+namespace NorixDevelopment\GrantGUI;
 
 
-use NorixDevelopment\GrantGUI;
-use NorixDevelopment\RankManager;
-use pocketmine\command\Command;
-use pocketmine\command\CommandSender;
-use pocketmine\Player;
+
+use muqsit\invmenu\InvMenuHandler;
+use NorixDevelopment\GrantGUI\commands\GrantCommand;
+use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
+use pocketmine\utils\TextFormat;
 
-class GrantCommand extends Command
+class GrantGUI extends PluginBase
 {
 
-    public function __construct()
+    public const PREFIX = TextFormat::YELLOW . TextFormat::BOLD . "> " . TextFormat::RESET . TextFormat::GRAY;
+
+    public function onEnable(): void
     {
-        parent::__construct("grant");
-        $this->setPermission("grant.command.use");
-        $this->setDescription("Access GrantGUI");
+        if (!InvMenuHandler::isRegistered()) {
+            InvMenuHandler::register($this);
+        }
+        $this->checkSoftDepends();
+        Server::getInstance()->getCommandMap()->register("GrantGUI", new GrantCommand());
     }
 
-
-    public function execute(CommandSender $sender, string $commandLabel, array $args)
+    public function checkSoftDepends() //This must be here.
     {
-        if (!$sender instanceof Player) {
-            $sender->sendMessage("This command does not support console executions.");
-            return;
-        }
+        $pureperms = Server::getInstance()->getPluginManager()->getPlugin("PurePerms");
+        $ranksystem = Server::getInstance()->getPluginManager()->getPlugin("RankSystem");
 
-        if (!isset($args[0])) {
-            $sender->sendMessage(GrantGUI::PREFIX . "Usage: /grant <player>");
+        if ($pureperms == true and $ranksystem == true) {
+            $this->getLogger()->notice("PurePerms and RankSystem Detected. GrantGUI cannot support both at the same time. Please remove one of the plugins.");
+            Server::getInstance()->getPluginManager()->disablePlugin($this);
             return;
-        }
-
-        $target = Server::getInstance()->getPlayer($args[0]);
-        if (!$target instanceof Player) {
-            return;
-        }
-
-        if (!$target->isOnline()) {
-            $target = Server::getInstance()->getOfflinePlayer($args[0]);
-            if ($target == null) {
-                $sender->sendMessage(GrantGUI::PREFIX . "This user does not exist.");
-                return;
-            }
-            RankManager::sendRanksMenu($sender, $target);
-            return;
-        } else {
-            RankManager::sendRanksMenu($sender, $target);
+        } elseif ($pureperms == false and $ranksystem == false) {
+            $this->getLogger()->notice("PurePerms or RankSystem not Detected. GrantGUI will stay disabled until one of the plugins are added. ");
+            Server::getInstance()->getPluginManager()->disablePlugin($this);
             return;
         }
     }

@@ -1,8 +1,13 @@
 name: GrantGUI
-main: NorixDevelopment\GrantGUI
-version: 1.0.0
-api: [3.0.0]
+main: NorixDevelopment\GrantGUI\GrantGUI
+version: 1.0.1
+api: [ 3.0.0 ]
 author: Norix Development
 softdepend:
   - "PurePerms"
   - "RankSystem"
+
+permissions:
+  grantgui.command.use:
+    description: "Access GrantGUI menu"
+    default: op
