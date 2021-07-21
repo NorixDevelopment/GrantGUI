@@ -7,6 +7,9 @@ softdepend:
   - "PurePerms"
   - "RankSystem"
 
+depend:
+  - "InvMenu"
+
 permissions:
   grantgui.command.use:
     description: "Access GrantGUI menu"
