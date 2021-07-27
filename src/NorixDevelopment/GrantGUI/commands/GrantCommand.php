@@ -27,21 +27,20 @@ namespace NorixDevelopment\GrantGUI\commands;
 
 use NorixDevelopment\GrantGUI\GrantGUI;
 use NorixDevelopment\GrantGUI\RankManager;
-use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\command\PluginCommand;
 use pocketmine\Player;
 use pocketmine\Server;
 
-class GrantCommand extends Command
+class GrantCommand extends PluginCommand
 {
 
-    public function __construct()
+    public function __construct(GrantGUI $owner)
     {
-        parent::__construct("grant");
+        parent::__construct("grant", $owner);
         $this->setPermission("grantgui.command.use");
         $this->setDescription("Access GrantGUI");
     }
-
 
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {

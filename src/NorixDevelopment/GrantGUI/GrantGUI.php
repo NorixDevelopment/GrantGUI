@@ -43,7 +43,7 @@ class GrantGUI extends PluginBase
             InvMenuHandler::register($this);
         }
         $this->checkSoftDepends();
-        Server::getInstance()->getCommandMap()->register("GrantGUI", new GrantCommand());
+        Server::getInstance()->getCommandMap()->register("GrantGUI", new GrantCommand($this));
     }
 
     public function checkSoftDepends() //This must be here.
